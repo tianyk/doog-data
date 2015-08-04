@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 #coding=utf8
 
-'''
+"""
 Created on Mar 18, 2013
 @author: yoyzhou
-'''
+"""
 
 '''
 Updated on APril 16, 2014
@@ -67,17 +67,17 @@ def get_prelogin_status(username):
 
 
 def login(username, pwd, cookie_file):
-    """"
+    """
         Login with use name, password and cookies.
         (1) If cookie file exists then try to load cookies;
         (2) If no cookies found then do login
     """
-    #If cookie file exists then try to load cookies
+    # If cookie file exists then try to load cookies
     if os.path.exists(cookie_file):
         try:
-            cookie_jar  = cookielib.LWPCookieJar(cookie_file)
+            cookie_jar = cookielib.LWPCookieJar(cookie_file)
             cookie_jar.load(ignore_discard=True, ignore_expires=True)
-            loaded = 1
+            loaded = 1  # cookie load标识
         except cookielib.LoadError:
             loaded = 0
             print 'Loading cookies error'
@@ -85,7 +85,7 @@ def login(username, pwd, cookie_file):
         #install loaded cookies for urllib2
         if loaded:
             cookie_support = urllib2.HTTPCookieProcessor(cookie_jar)
-            opener         = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
+            opener = urllib2.build_opener(cookie_support, urllib2.HTTPHandler)
             urllib2.install_opener(opener)
             print 'Loading cookies success'
             return 1
@@ -221,7 +221,7 @@ if __name__ == '__main__':
 
     # if you see the above message, then do whatever you want with urllib2, following is a example for fetch Kaifu's Weibo Home Page
 	# Trying to fetch Kaifu Lee's Weibo home page
-	kaifu_page = urllib2.urlopen('http://www.weibo.com/kaifulee').read()
+	kaifu_page = urllib2.urlopen('http://www.weibo.com/yongketian').read()
 	print kaifu_page
 
     else:
